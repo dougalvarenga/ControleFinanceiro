@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Financeiro</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- CABEÇALHO -->
+
+        <div class="saldo-card">
+
+            <div class="topo-card">
+                <h3>Saldo</h3>
+
+                <button id="btnConfig">
+                    ⚙️
+                </button>
+            </div>
+
+            <h1 id="saldo">
+                R$ 0,00
+            </h1>
+
+            <div class="resumo">
+
+                <div class="card-resumo">
+                    <span>Entradas</span>
+                    <strong id="totalEntradas">
+                        R$ 0,00
+                    </strong>
+                </div>
+
+                <div class="card-resumo">
+                    <span>Saídas</span>
+                    <strong id="totalSaidas">
+                        R$ 0,00
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- AÇÕES -->
+
+        <div class="acoes">
+
+            <button id="btnEntrada" class="entrada-btn">
+                + Entrada
+            </button>
+
+            <button id="btnSaida" class="saida-btn">
+                - Saída
+            </button>
+
+        </div>
+
+        <!-- FILTROS -->
+
+        <div class="filtros">
+
+            <input
+                type="text"
+                id="pesquisa"
+                placeholder="Pesquisar..."
+            >
+
+            <select id="categoriaFiltro">
+                <option value="">
+                    Todas as Categorias
+                </option>
+            </select>
+
+            <select id="ordenacao">
+
+                <option value="recentes">
+                    Mais recentes
+                </option>
+
+                <option value="antigos">
+                    Mais antigos
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- HISTÓRICO -->
+
+        <h2 class="titulo">
+            Histórico
+        </h2>
+
+        <div id="historico"></div>
+
+    </div>
+
+    <!-- MODAL -->
+
+    <div id="modal" class="modal oculto">
+
+        <div class="modal-content">
+
+            <h2 id="tituloModal">
+                Novo Lançamento
+            </h2>
+
+            <form id="formMovimentacao">
+
+                <input
+                    type="date"
+                    id="data"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="descricao"
+                    placeholder="Descrição ou Local"
+                    required
+                >
+
+                <select
+                    id="categoria"
+                    required
+                >
+                </select>
+
+                <input
+                    type="number"
+                    id="valor"
+                    step="0.01"
+                    placeholder="Valor"
+                    required
+                >
+
+                <div class="botoes-modal">
+
+                    <button
+                        type="submit"
+                        class="salvar"
+                    >
+                        Salvar
+                    </button>
+
+                    <button
+                        type="button"
+                        class="cancelar"
+                        onclick="fecharModal()"
+                    >
+                        Cancelar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
