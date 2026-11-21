@@ -4,24 +4,23 @@
     --success:#16a34a;
     --danger:#dc2626;
 
-    --bg:#f5f7fb;
+    --bg:#f4f6fb;
     --card:#ffffff;
 
     --text:#1f2937;
-    --muted:#6b7280;
+    --secondary:#6b7280;
 
     --shadow:
-        0 8px 24px rgba(0,0,0,.06);
+    0 10px 25px rgba(0,0,0,.08);
+
+    --glass:
+    rgba(255,255,255,.60);
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
 }
 
 body{
@@ -37,25 +36,8 @@ body{
     color:
     var(--text);
 
-    padding-bottom:
-    110px;
+    padding-bottom:120px;
 }
-
-/* =====================
-   PÁGINAS
-===================== */
-
-.pagina{
-    display:none;
-}
-
-.pagina.ativa{
-    display:block;
-}
-
-/* =====================
-   CONTAINER
-===================== */
 
 .container{
 
@@ -66,9 +48,26 @@ body{
     padding:20px;
 }
 
-/* =====================
-   CARD SALDO
-===================== */
+button{
+
+    cursor:pointer;
+}
+
+/* =========================
+   PÁGINAS
+========================= */
+
+.pagina{
+    display:none;
+}
+
+.pagina.ativa{
+    display:block;
+}
+
+/* =========================
+   SALDO
+========================= */
 
 .saldo-card{
 
@@ -94,10 +93,10 @@ body{
 
 .topo-card h3{
 
-    font-size:18px;
-
     color:
-    var(--muted);
+    var(--secondary);
+
+    font-size:16px;
 }
 
 .btn-icon{
@@ -106,30 +105,26 @@ body{
 
     background:none;
 
-    cursor:pointer;
+    font-size:22px;
 
     color:
-    var(--text);
-
-    font-size:22px;
+    var(--secondary);
 }
 
 #saldo{
 
-    margin-top:10px;
+    margin-top:12px;
 
-    font-size:40px;
+    font-size:42px;
 
     font-weight:700;
 }
 
-/* =====================
+/* =========================
    RESUMO
-===================== */
+========================= */
 
 .resumo{
-
-    margin-top:20px;
 
     display:grid;
 
@@ -137,15 +132,17 @@ body{
     1fr 1fr;
 
     gap:12px;
+
+    margin-top:24px;
 }
 
 .card-resumo{
 
-    padding:16px;
+    background:#f8fafc;
 
     border-radius:18px;
 
-    background:#f8fafc;
+    padding:16px;
 }
 
 .card-resumo span{
@@ -155,7 +152,7 @@ body{
     margin-bottom:6px;
 
     color:
-    var(--muted);
+    var(--secondary);
 
     font-size:13px;
 }
@@ -177,16 +174,16 @@ body{
     var(--danger);
 }
 
-/* =====================
-   AÇÕES
-===================== */
+/* =========================
+   BOTÕES
+========================= */
 
 .acoes{
 
     display:grid;
 
     grid-template-columns:
-    1fr 1fr;
+    repeat(2,1fr);
 
     gap:12px;
 
@@ -199,7 +196,7 @@ body{
 
     border-radius:18px;
 
-    padding:15px;
+    padding:16px;
 
     color:white;
 
@@ -207,14 +204,13 @@ body{
 
     font-weight:600;
 
-    cursor:pointer;
-
     transition:.2s;
 }
 
 .acoes button:hover{
 
-    transform:translateY(-2px);
+    transform:
+    translateY(-2px);
 }
 
 .entrada-btn{
@@ -229,9 +225,9 @@ body{
     var(--danger);
 }
 
-/* =====================
-   BLOCOS
-===================== */
+/* =========================
+   SEÇÕES
+========================= */
 
 .bloco{
 
@@ -246,32 +242,44 @@ body{
 
     align-items:center;
 
-    margin-bottom:14px;
+    margin-bottom:15px;
 }
 
 .secao-titulo h2{
 
-    font-size:20px;
+    font-size:22px;
 }
 
-/* =====================
+.titulo-pagina{
+
+    margin-bottom:20px;
+}
+
+/* =========================
    HISTÓRICO
-===================== */
+========================= */
 
 .item{
 
-    background:white;
-
-    padding:16px;
+    background:
+    white;
 
     border-radius:18px;
+
+    padding:16px;
 
     margin-bottom:12px;
 
     box-shadow:
     0 4px 10px rgba(0,0,0,.05);
 
-    cursor:pointer;
+    transition:.2s;
+}
+
+.item:hover{
+
+    transform:
+    translateY(-2px);
 }
 
 .item-data{
@@ -279,24 +287,24 @@ body{
     font-size:12px;
 
     color:
-    var(--muted);
+    var(--secondary);
 }
 
 .item-descricao{
 
-    font-weight:600;
+    margin-top:5px;
 
-    margin-top:6px;
+    font-weight:600;
 
     font-size:18px;
 }
 
 .item-categoria{
 
-    margin-top:5px;
+    margin-top:4px;
 
     color:
-    var(--muted);
+    var(--secondary);
 
     font-size:14px;
 }
@@ -321,14 +329,9 @@ body{
     font-weight:700;
 }
 
-/* =====================
-   MOVIMENTAÇÕES
-===================== */
-
-.titulo-pagina{
-
-    margin-bottom:20px;
-}
+/* =========================
+   FILTROS
+========================= */
 
 .filtros{
 
@@ -340,22 +343,22 @@ body{
 
     width:100%;
 
-    margin-bottom:10px;
+    margin-bottom:12px;
 
     padding:14px;
 
     border-radius:14px;
 
-    border:1px solid #e5e7eb;
+    border:1px solid #dbe3ef;
 
     background:white;
 
     font-size:14px;
 }
 
-/* =====================
+/* =========================
    CATEGORIAS
-===================== */
+========================= */
 
 .topo-categoria{
 
@@ -372,9 +375,9 @@ body{
 
     background:white;
 
-    padding:20px;
+    border-radius:20px;
 
-    border-radius:18px;
+    padding:18px;
 
     margin-bottom:16px;
 
@@ -389,18 +392,59 @@ body{
 
 .categoria-item{
 
-    padding:12px;
+    display:flex;
 
-    background:#f8fafc;
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px;
 
     border-radius:12px;
 
     margin-bottom:8px;
+
+    background:#f8fafc;
 }
 
-/* =====================
+.categoria-item span{
+
+    font-weight:500;
+}
+
+.categoria-acoes{
+
+    display:flex;
+
+    gap:8px;
+}
+
+.categoria-acoes button{
+
+    border:none;
+
+    padding:8px 10px;
+
+    border-radius:10px;
+
+    font-size:14px;
+}
+
+.btn-editar{
+
+    background:#facc15;
+}
+
+.btn-excluir{
+
+    background:var(--danger);
+
+    color:white;
+}
+
+/* =========================
    AJUSTES
-===================== */
+========================= */
 
 .ajustes-lista{
 
@@ -417,32 +461,32 @@ body{
 
     border:none;
 
-    padding:16px;
-
-    border-radius:16px;
-
     background:white;
 
-    cursor:pointer;
+    border-radius:18px;
 
-    text-align:left;
+    padding:16px;
 
     box-shadow:
     var(--shadow);
+
+    text-align:left;
+
+    font-size:15px;
 }
 
-/* =====================
+/* =========================
    BOTÕES GERAIS
-===================== */
+========================= */
 
 .btn-primary{
+
+    border:none;
 
     background:
     var(--primary);
 
     color:white;
-
-    border:none;
 }
 
 .btn-danger{
@@ -465,8 +509,6 @@ body{
     padding:10px 14px;
 
     border-radius:12px;
-
-    cursor:pointer;
 }
 
 .btn-cancelar{
@@ -474,13 +516,11 @@ body{
     border:none;
 
     background:#d1d5db;
-
-    color:#111827;
 }
 
-/* =====================
+/* =========================
    MODAIS
-===================== */
+========================= */
 
 .modal{
 
@@ -489,7 +529,7 @@ body{
     inset:0;
 
     background:
-    rgba(0,0,0,.45);
+    rgba(0,0,0,.5);
 
     display:flex;
 
@@ -497,10 +537,11 @@ body{
 
     align-items:center;
 
-    z-index:5000;
+    z-index:9999;
 }
 
 .oculto{
+
     display:none;
 }
 
@@ -512,14 +553,14 @@ body{
 
     background:white;
 
-    padding:24px;
-
     border-radius:24px;
+
+    padding:24px;
 }
 
 .modal-content h2{
 
-    margin-bottom:20px;
+    margin-bottom:16px;
 }
 
 .modal-content form{
@@ -538,7 +579,9 @@ body{
 
     border-radius:14px;
 
-    border:1px solid #e5e7eb;
+    border:1px solid #dbe3ef;
+
+    font-size:14px;
 }
 
 .modal-botoes{
@@ -546,25 +589,25 @@ body{
     display:grid;
 
     grid-template-columns:
-    1fr 1fr;
+    repeat(2,1fr);
 
     gap:10px;
 
-    margin-top:10px;
+    margin-top:8px;
 }
 
 .modal-botoes button{
 
-    padding:14px;
+    border:none;
 
     border-radius:14px;
 
-    cursor:pointer;
+    padding:14px;
 }
 
-/* =====================
-   LIQUID GLASS NAVBAR
-===================== */
+/* =========================
+   LIQUID GLASS NAVIGATION
+========================= */
 
 .bottom-nav{
 
@@ -572,15 +615,14 @@ body{
 
     left:50%;
 
-    bottom:18px;
+    bottom:15px;
 
-    transform:translateX(-50%);
+    transform:
+    translateX(-50%);
 
     width:92%;
 
-    max-width:650px;
-
-    padding:12px;
+    max-width:700px;
 
     display:flex;
 
@@ -588,10 +630,12 @@ body{
 
     align-items:center;
 
-    border-radius:30px;
+    padding:10px;
+
+    border-radius:32px;
 
     background:
-    rgba(255,255,255,.60);
+    var(--glass);
 
     backdrop-filter:
     blur(25px);
@@ -600,12 +644,12 @@ body{
     blur(25px);
 
     border:
-    1px solid rgba(255,255,255,.50);
+    1px solid rgba(255,255,255,.5);
 
     box-shadow:
     0 8px 32px rgba(0,0,0,.12);
 
-    z-index:999;
+    z-index:9000;
 }
 
 .nav-item{
@@ -614,13 +658,8 @@ body{
 
     background:none;
 
-    cursor:pointer;
-
-    padding:10px 14px;
-
-    border-radius:18px;
-
-    color:#6b7280;
+    color:
+    var(--secondary);
 
     display:flex;
 
@@ -630,7 +669,11 @@ body{
 
     gap:4px;
 
-    transition:.25s;
+    padding:10px 14px;
+
+    border-radius:18px;
+
+    transition:.2s;
 }
 
 .nav-item i{
@@ -645,28 +688,31 @@ body{
 
 .nav-item.ativo{
 
-    color:
-    var(--primary);
-
     background:
     rgba(255,255,255,.65);
+
+    color:
+    var(--primary);
 }
 
-/* =====================
+/* =========================
    RESPONSIVO
-===================== */
+========================= */
 
-@media (max-width:480px){
+@media(max-width:480px){
 
     #saldo{
-        font-size:32px;
+
+        font-size:34px;
     }
 
     .nav-item span{
+
         font-size:10px;
     }
 
     .nav-item i{
+
         font-size:20px;
     }
 }
