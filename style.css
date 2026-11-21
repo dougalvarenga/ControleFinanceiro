@@ -1,26 +1,33 @@
 :root{
 
-    --primary:#2563eb;
-    --success:#16a34a;
-    --danger:#dc2626;
+    --primary:#3b82f6;
+    --success:#22c55e;
+    --danger:#ef4444;
 
-    --bg:#f4f6fb;
-    --card:#ffffff;
-
-    --text:#1f2937;
-    --secondary:#6b7280;
-
-    --shadow:
-    0 10px 25px rgba(0,0,0,.08);
+    --text:#0f172a;
+    --secondary:#475569;
 
     --glass:
-    rgba(255,255,255,.60);
+    rgba(255,255,255,.22);
+
+    --glass-strong:
+    rgba(255,255,255,.35);
+
+    --glass-border:
+    rgba(255,255,255,.35);
+
+    --shadow:
+    0 8px 32px rgba(31,38,135,.15);
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -30,32 +37,86 @@ body{
     Arial,
     sans-serif;
 
-    background:
-    var(--bg);
-
     color:
     var(--text);
+
+    min-height:100vh;
+
+    overflow-x:hidden;
 
     padding-bottom:120px;
 }
 
-.container{
+/* ===================== */
+/* FUNDO LIQUID */
+/* ===================== */
 
-    max-width:700px;
+.liquid-background{
 
-    margin:auto;
+    position:fixed;
 
-    padding:20px;
+    inset:0;
+
+    z-index:-1;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        135deg,
+        #dbeafe 0%,
+        #ede9fe 40%,
+        #cffafe 100%
+    );
 }
 
-button{
+.orb{
 
-    cursor:pointer;
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(70px);
+
+    opacity:.65;
 }
 
-/* =========================
-   PÁGINAS
-========================= */
+.orb-1{
+
+    width:350px;
+    height:350px;
+
+    background:#60a5fa;
+
+    top:-80px;
+    left:-100px;
+}
+
+.orb-2{
+
+    width:300px;
+    height:300px;
+
+    background:#a78bfa;
+
+    right:-80px;
+    top:150px;
+}
+
+.orb-3{
+
+    width:250px;
+    height:250px;
+
+    background:#22d3ee;
+
+    bottom:-60px;
+    left:30%;
+}
+
+/* ===================== */
+/* PAGINAS */
+/* ===================== */
 
 .pagina{
     display:none;
@@ -65,21 +126,69 @@ button{
     display:block;
 }
 
-/* =========================
-   SALDO
-========================= */
+/* ===================== */
+/* CONTAINER */
+/* ===================== */
 
-.saldo-card{
+.container{
+
+    width:100%;
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:20px;
+}
+
+/* ===================== */
+/* GLASS */
+/* ===================== */
+
+.glass-card{
 
     background:
-    var(--card);
+    rgba(255,255,255,.22);
 
-    border-radius:24px;
+    backdrop-filter:
+    blur(24px);
 
-    padding:24px;
+    -webkit-backdrop-filter:
+    blur(24px);
+
+    border:
+    1px solid
+    rgba(255,255,255,.40);
 
     box-shadow:
     var(--shadow);
+}
+
+.glass-modal{
+
+    background:
+    rgba(255,255,255,.28);
+
+    backdrop-filter:
+    blur(32px);
+
+    -webkit-backdrop-filter:
+    blur(32px);
+
+    border:
+    1px solid
+    rgba(255,255,255,.35);
+}
+
+/* ===================== */
+/* SALDO */
+/* ===================== */
+
+.saldo-card{
+
+    border-radius:28px;
+
+    padding:24px;
 }
 
 .topo-card{
@@ -93,17 +202,17 @@ button{
 
 .topo-card h3{
 
+    font-size:16px;
+
     color:
     var(--secondary);
-
-    font-size:16px;
 }
 
 .btn-icon{
 
-    border:none;
-
     background:none;
+
+    border:none;
 
     font-size:22px;
 
@@ -113,34 +222,32 @@ button{
 
 #saldo{
 
-    margin-top:12px;
-
     font-size:42px;
+
+    margin-top:10px;
 
     font-weight:700;
 }
 
-/* =========================
-   RESUMO
-========================= */
+/* ===================== */
+/* RESUMO */
+/* ===================== */
 
 .resumo{
+
+    margin-top:20px;
 
     display:grid;
 
     grid-template-columns:
-    1fr 1fr;
+    repeat(2,1fr);
 
     gap:12px;
-
-    margin-top:24px;
 }
 
 .card-resumo{
 
-    background:#f8fafc;
-
-    border-radius:18px;
+    border-radius:20px;
 
     padding:16px;
 }
@@ -149,12 +256,12 @@ button{
 
     display:block;
 
-    margin-bottom:6px;
+    font-size:13px;
 
     color:
     var(--secondary);
 
-    font-size:13px;
+    margin-bottom:6px;
 }
 
 .card-resumo strong{
@@ -174,9 +281,9 @@ button{
     var(--danger);
 }
 
-/* =========================
-   BOTÕES
-========================= */
+/* ===================== */
+/* AÇÕES */
+/* ===================== */
 
 .acoes{
 
@@ -194,17 +301,15 @@ button{
 
     border:none;
 
-    border-radius:18px;
+    border-radius:22px;
 
     padding:16px;
 
     color:white;
 
-    font-size:15px;
-
     font-weight:600;
 
-    transition:.2s;
+    transition:.3s;
 }
 
 .acoes button:hover{
@@ -216,64 +321,62 @@ button{
 .entrada-btn{
 
     background:
-    var(--success);
+    linear-gradient(
+        135deg,
+        #22c55e,
+        #16a34a
+    );
 }
 
 .saida-btn{
 
     background:
-    var(--danger);
+    linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
 }
 
-/* =========================
-   SEÇÕES
-========================= */
+/* ===================== */
+/* HISTÓRICO */
+/* ===================== */
 
 .bloco{
 
-    margin-top:24px;
+    margin-top:25px;
 }
 
 .secao-titulo{
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
     margin-bottom:15px;
 }
-
-.secao-titulo h2{
-
-    font-size:22px;
-}
-
-.titulo-pagina{
-
-    margin-bottom:20px;
-}
-
-/* =========================
-   HISTÓRICO
-========================= */
 
 .item{
 
     background:
-    white;
+    rgba(255,255,255,.22);
 
-    border-radius:18px;
+    backdrop-filter:
+    blur(20px);
+
+    -webkit-backdrop-filter:
+    blur(20px);
+
+    border:
+    1px solid
+    rgba(255,255,255,.30);
+
+    border-radius:20px;
 
     padding:16px;
 
     margin-bottom:12px;
 
     box-shadow:
-    0 4px 10px rgba(0,0,0,.05);
+    var(--shadow);
 
-    transition:.2s;
+    transition:.25s;
 }
 
 .item:hover{
@@ -284,29 +387,29 @@ button{
 
 .item-data{
 
-    font-size:12px;
-
     color:
     var(--secondary);
+
+    font-size:12px;
 }
 
 .item-descricao{
 
-    margin-top:5px;
-
-    font-weight:600;
+    margin-top:6px;
 
     font-size:18px;
+
+    font-weight:600;
 }
 
 .item-categoria{
 
     margin-top:4px;
 
+    font-size:14px;
+
     color:
     var(--secondary);
-
-    font-size:14px;
 }
 
 .valor-entrada{
@@ -329,11 +432,15 @@ button{
     font-weight:700;
 }
 
-/* =========================
-   FILTROS
-========================= */
+/* ===================== */
+/* FILTROS */
+/* ===================== */
 
 .filtros{
+
+    border-radius:24px;
+
+    padding:16px;
 
     margin-bottom:20px;
 }
@@ -343,22 +450,28 @@ button{
 
     width:100%;
 
-    margin-bottom:12px;
-
     padding:14px;
 
-    border-radius:14px;
+    margin-bottom:10px;
 
-    border:1px solid #dbe3ef;
+    border-radius:16px;
 
-    background:white;
+    border:
+    1px solid rgba(255,255,255,.4);
 
-    font-size:14px;
+    background:
+    rgba(255,255,255,.18);
+
+    backdrop-filter:
+    blur(15px);
+
+    color:
+    var(--text);
 }
 
-/* =========================
-   CATEGORIAS
-========================= */
+/* ===================== */
+/* CATEGORIAS */
+/* ===================== */
 
 .topo-categoria{
 
@@ -368,21 +481,16 @@ button{
 
     align-items:center;
 
-    margin-bottom:20px;
+    margin-bottom:15px;
 }
 
 .categoria-box{
 
-    background:white;
-
-    border-radius:20px;
+    border-radius:24px;
 
     padding:18px;
 
     margin-bottom:16px;
-
-    box-shadow:
-    var(--shadow);
 }
 
 .categoria-box h3{
@@ -400,16 +508,12 @@ button{
 
     padding:12px;
 
-    border-radius:12px;
-
     margin-bottom:8px;
 
-    background:#f8fafc;
-}
+    border-radius:16px;
 
-.categoria-item span{
-
-    font-weight:500;
+    background:
+    rgba(255,255,255,.18);
 }
 
 .categoria-acoes{
@@ -419,32 +523,33 @@ button{
     gap:8px;
 }
 
-.categoria-acoes button{
+.btn-editar{
 
     border:none;
 
-    padding:8px 10px;
+    border-radius:12px;
 
-    border-radius:10px;
-
-    font-size:14px;
-}
-
-.btn-editar{
+    padding:8px 12px;
 
     background:#facc15;
 }
 
 .btn-excluir{
 
-    background:var(--danger);
+    border:none;
+
+    border-radius:12px;
+
+    padding:8px 12px;
 
     color:white;
+
+    background:#ef4444;
 }
 
-/* =========================
-   AJUSTES
-========================= */
+/* ===================== */
+/* AJUSTES */
+/* ===================== */
 
 .ajustes-lista{
 
@@ -461,66 +566,25 @@ button{
 
     border:none;
 
-    background:white;
-
     border-radius:18px;
 
-    padding:16px;
-
-    box-shadow:
-    var(--shadow);
+    padding:18px;
 
     text-align:left;
 
-    font-size:15px;
-}
-
-/* =========================
-   BOTÕES GERAIS
-========================= */
-
-.btn-primary{
-
-    border:none;
+    backdrop-filter:
+    blur(20px);
 
     background:
-    var(--primary);
+    rgba(255,255,255,.22);
 
-    color:white;
+    border:
+    1px solid rgba(255,255,255,.30);
 }
 
-.btn-danger{
-
-    background:
-    var(--danger) !important;
-
-    color:white !important;
-}
-
-.btn-secundario{
-
-    border:none;
-
-    background:
-    var(--primary);
-
-    color:white;
-
-    padding:10px 14px;
-
-    border-radius:12px;
-}
-
-.btn-cancelar{
-
-    border:none;
-
-    background:#d1d5db;
-}
-
-/* =========================
-   MODAIS
-========================= */
+/* ===================== */
+/* MODAIS */
+/* ===================== */
 
 .modal{
 
@@ -529,7 +593,10 @@ button{
     inset:0;
 
     background:
-    rgba(0,0,0,.5);
+    rgba(15,23,42,.30);
+
+    backdrop-filter:
+    blur(10px);
 
     display:flex;
 
@@ -551,16 +618,9 @@ button{
 
     max-width:420px;
 
-    background:white;
-
-    border-radius:24px;
+    border-radius:30px;
 
     padding:24px;
-}
-
-.modal-content h2{
-
-    margin-bottom:16px;
 }
 
 .modal-content form{
@@ -575,13 +635,19 @@ button{
 .modal-content input,
 .modal-content select{
 
-    padding:14px;
+    padding:15px;
 
-    border-radius:14px;
+    border-radius:16px;
 
-    border:1px solid #dbe3ef;
+    border:
+    1px solid
+    rgba(255,255,255,.4);
 
-    font-size:14px;
+    background:
+    rgba(255,255,255,.18);
+
+    backdrop-filter:
+    blur(20px);
 }
 
 .modal-botoes{
@@ -593,21 +659,43 @@ button{
 
     gap:10px;
 
-    margin-top:8px;
+    margin-top:10px;
 }
 
 .modal-botoes button{
 
     border:none;
 
-    border-radius:14px;
+    border-radius:16px;
 
     padding:14px;
 }
 
-/* =========================
-   LIQUID GLASS NAVIGATION
-========================= */
+.btn-primary{
+
+    background:
+    var(--primary);
+
+    color:white;
+}
+
+.btn-cancelar{
+
+    background:
+    rgba(255,255,255,.35);
+}
+
+.btn-danger{
+
+    background:
+    var(--danger);
+
+    color:white;
+}
+
+/* ===================== */
+/* NAVBAR IOS */
+/* ===================== */
 
 .bottom-nav{
 
@@ -628,28 +716,24 @@ button{
 
     justify-content:space-around;
 
-    align-items:center;
-
     padding:10px;
 
-    border-radius:32px;
+    border-radius:34px;
 
     background:
-    var(--glass);
+    rgba(255,255,255,.20);
 
     backdrop-filter:
-    blur(25px);
+    blur(40px);
 
     -webkit-backdrop-filter:
-    blur(25px);
+    blur(40px);
 
     border:
-    1px solid rgba(255,255,255,.5);
+    1px solid rgba(255,255,255,.35);
 
     box-shadow:
-    0 8px 32px rgba(0,0,0,.12);
-
-    z-index:9000;
+    0 8px 35px rgba(31,38,135,.15);
 }
 
 .nav-item{
@@ -657,9 +741,6 @@ button{
     border:none;
 
     background:none;
-
-    color:
-    var(--secondary);
 
     display:flex;
 
@@ -673,7 +754,10 @@ button{
 
     border-radius:18px;
 
-    transition:.2s;
+    color:
+    var(--secondary);
+
+    transition:.25s;
 }
 
 .nav-item i{
@@ -689,15 +773,15 @@ button{
 .nav-item.ativo{
 
     background:
-    rgba(255,255,255,.65);
+    rgba(255,255,255,.35);
 
     color:
     var(--primary);
 }
 
-/* =========================
-   RESPONSIVO
-========================= */
+/* ===================== */
+/* RESPONSIVO */
+/* ===================== */
 
 @media(max-width:480px){
 
@@ -713,6 +797,6 @@ button{
 
     .nav-item i{
 
-        font-size:20px;
+        font-size:18px;
     }
 }
