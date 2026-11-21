@@ -1,34 +1,31 @@
-const STORAGE_KEY = "controle_financeiro";
+const STORAGE_KEY = "controleFinanceiro";
 
-let tipoAtual = "entrada";
+// =====================
+// DADOS
+// =====================
+
+let tipoMovimentoAtual = "entrada";
 
 let dados = {
     categoriasEntrada: [
-        "Salário"
+        "Salário",
+        "Freelance"
     ],
 
     categoriasSaida: [
         "Mercado",
-        "Combustível"
+        "Combustível",
+        "Lazer"
     ],
 
     movimentacoes: []
 };
 
-carregar();
-atualizarTela();
+// =====================
+// STORAGE
+// =====================
 
-function carregar() {
-
-    const salvo =
-        localStorage.getItem(STORAGE_KEY);
-
-    if(salvo){
-        dados = JSON.parse(salvo);
-    }
-}
-
-function salvar() {
+function salvarDados() {
 
     localStorage.setItem(
         STORAGE_KEY,
@@ -36,198 +33,541 @@ function salvar() {
     );
 }
 
-function moeda(valor){
+function carregarDados() {
+
+    const dadosSalvos =
+        localStorage.getItem(
+            STORAGE_KEY
+        );
+
+    if (dadosSalvos) {
+
+        dados =
+        JSON.parse(dadosSalvos);
+    }
+}
+
+// =====================
+// FORMATAÇÃO
+// =====================
+
+function formatarMoeda(valor) {
 
     return valor.toLocaleString(
         "pt-BR",
         {
-            style:"currency",
-            currency:"BRL"
+            style: "currency",
+            currency: "BRL"
         }
     );
 }
 
-function atualizarTela(){
+// =====================
+// RESUMO
+// =====================
 
-    atualizarResumo();
-    renderizarHistorico();
-}
-
-function atualizarResumo(){
+function atualizarResumo() {
 
     const entradas =
         dados.movimentacoes
-        .filter(x => x.tipo === "entrada")
-        .reduce((s,x)=>s+x.valor,0);
+        .filter(
+            x =>
+            x.tipo === "entrada"
+        )
+        .reduce(
+            (total, item) =>
+            total + item.valor,
+            0
+        );
 
     const saidas =
         dados.movimentacoes
-        .filter(x => x.tipo === "saida")
-        .reduce((s,x)=>s+x.valor,0);
+        .filter(
+            x =>
+            x.tipo === "saida"
+        )
+        .reduce(
+            (total, item) =>
+            total + item.valor,
+            0
+        );
 
     const saldo =
         entradas - saidas;
 
-    document.getElementById("saldo").innerText =
-        moeda(saldo);
+    document.getElementById(
+        "saldo"
+    ).innerText =
+        formatarMoeda(saldo);
 
-    document.getElementById("totalEntradas").innerText =
-        moeda(entradas);
+    document.getElementById(
+        "totalEntradas"
+    ).innerText =
+        formatarMoeda(entradas);
 
-    document.getElementById("totalSaidas").innerText =
-        moeda(saidas);
+    document.getElementById(
+        "totalSaidas"
+    ).innerText =
+        formatarMoeda(saidas);
 }
 
-function renderizarHistorico(){
+// =====================
+// CARD MOVIMENTO
+// =====================
+
+function criarCard(item) {
+
+    return `
+        <div class="item">
+
+            <div class="item-data">
+                ${formatarData(item.data)}
+            </div>
+
+            <div class="item-descricao">
+                ${item.descricao}
+            </div>
+
+            <div class="item-categoria">
+                ${item.categoria}
+            </div>
+
+            <div class="${
+                item.tipo === "entrada"
+                ? "valor-entrada"
+                : "valor-saida"
+            }">
+
+                ${
+                    item.tipo === "entrada"
+                    ? "+"
+                    : "-"
+                }
+
+                ${formatarMoeda(item.valor)}
+
+            </div>
+
+        </div>
+    `;
+}
+
+// =====================
+// HISTÓRICO COMPLETO
+// =====================
+
+function renderizarMovimentacoes() {
 
     const lista =
-        document.getElementById("historico");
+        document.getElementById(
+            "listaMovimentacoes"
+        );
+
+    if (!lista) return;
 
     lista.innerHTML = "";
 
     const movimentos =
         [...dados.movimentacoes]
-        .sort((a,b)=>
-            new Date(b.data) - new Date(a.data)
+
+        .sort(
+            (a, b) =>
+            new Date(b.data)
+            - new Date(a.data)
         );
 
-    movimentos.forEach(item=>{
+    movimentos.forEach(item => {
 
-        lista.innerHTML += `
-            <div class="item">
+        lista.innerHTML +=
+            criarCard(item);
 
-                <div class="item-data">
-                    ${item.data}
-                </div>
-
-                <div class="item-descricao">
-                    ${item.descricao}
-                </div>
-
-                <div class="item-categoria">
-                    ${item.categoria}
-                </div>
-
-                <div class="${
-                    item.tipo==="entrada"
-                        ? "valor-entrada"
-                        : "valor-saida"
-                }">
-
-                    ${
-                        item.tipo==="entrada"
-                        ? "+"
-                        : "-"
-                    }
-
-                    ${moeda(item.valor)}
-
-                </div>
-
-            </div>
-        `;
     });
 }
 
-document
-.getElementById("btnEntrada")
-.addEventListener("click", ()=>{
+// =====================
+// ÚLTIMOS 10
+// =====================
 
-    tipoAtual = "entrada";
+function renderizarUltimos() {
 
-    abrirModal(
-        dados.categoriasEntrada
+    const lista =
+        document.getElementById(
+            "ultimosLancamentos"
+        );
+
+    if (!lista) return;
+
+    lista.innerHTML = "";
+
+    const ultimos =
+        [...dados.movimentacoes]
+
+        .sort(
+            (a, b) =>
+            new Date(b.data)
+            - new Date(a.data)
+        )
+
+        .slice(0, 10);
+
+    ultimos.forEach(item => {
+
+        lista.innerHTML +=
+            criarCard(item);
+
+    });
+}
+
+// =====================
+// DATA
+// =====================
+
+function formatarData(data) {
+
+    const d =
+        new Date(data);
+
+    return d.toLocaleDateString(
+        "pt-BR"
+    );
+}
+
+// =====================
+// TELA
+// =====================
+
+function atualizarTela() {
+
+    atualizarResumo();
+
+    renderizarUltimos();
+
+    renderizarMovimentacoes();
+}
+
+// =====================
+// NAVEGAÇÃO SPA
+// =====================
+
+const botoesNav =
+document.querySelectorAll(
+    ".nav-item"
+);
+
+botoesNav.forEach(botao => {
+
+    botao.addEventListener(
+        "click",
+        () => {
+
+            const tela =
+                botao.dataset.tela;
+
+            document
+            .querySelectorAll(".pagina")
+            .forEach(p => {
+
+                p.classList.remove(
+                    "ativa"
+                );
+
+            });
+
+            document
+            .getElementById(tela)
+            .classList.add("ativa");
+
+            botoesNav.forEach(btn => {
+
+                btn.classList.remove(
+                    "ativo"
+                );
+
+            });
+
+            botao.classList.add(
+                "ativo"
+            );
+
+        }
     );
 });
 
-document
-.getElementById("btnSaida")
-.addEventListener("click", ()=>{
+// =====================
+// MODAL LANÇAMENTO
+// =====================
 
-    tipoAtual = "saida";
-
-    abrirModal(
-        dados.categoriasSaida
-    );
-});
-
-function abrirModal(categorias){
+function abrirModalLancamento() {
 
     document
-        .getElementById("modal")
-        .classList
-        .remove("oculto");
+    .getElementById(
+        "modalLancamento"
+    )
+    .classList.remove(
+        "oculto"
+    );
+
+    document
+    .getElementById("data")
+    .value =
+    new Date()
+        .toISOString()
+        .split("T")[0];
+
+    carregarCategoriasModal();
+}
+
+function fecharModalLancamento() {
+
+    document
+    .getElementById(
+        "modalLancamento"
+    )
+    .classList.add(
+        "oculto"
+    );
+}
+
+// =====================
+// MODAL CATEGORIA
+// =====================
+
+function abrirModalCategoria() {
+
+    document
+    .getElementById(
+        "modalCategoria"
+    )
+    .classList.remove(
+        "oculto"
+    );
+}
+
+function fecharModalCategoria() {
+
+    document
+    .getElementById(
+        "modalCategoria"
+    )
+    .classList.add(
+        "oculto"
+    );
+}
+
+// =====================
+// CARREGAR CATEGORIAS
+// =====================
+
+function carregarCategoriasModal() {
 
     const select =
-        document.getElementById("categoria");
+    document.getElementById(
+        "categoria"
+    );
 
     select.innerHTML = "";
 
-    categorias.forEach(cat=>{
+    const categorias =
+        tipoMovimentoAtual === "entrada"
+
+        ? dados.categoriasEntrada
+
+        : dados.categoriasSaida;
+
+    categorias.forEach(cat => {
 
         select.innerHTML += `
-            <option>
+            <option value="${cat}">
                 ${cat}
             </option>
         `;
+
     });
-
-    document.getElementById("data").value =
-        new Date()
-        .toISOString()
-        .split("T")[0];
 }
 
-function fecharModal(){
-
-    document
-        .getElementById("modal")
-        .classList
-        .add("oculto");
-}
+// =====================
+// BOTÕES
+// =====================
 
 document
-.getElementById("formMovimentacao")
+.getElementById("btnEntrada")
 .addEventListener(
-"submit",
-function(e){
+    "click",
+    () => {
 
-    e.preventDefault();
+        tipoMovimentoAtual =
+            "entrada";
 
-    dados.movimentacoes.push({
+        document
+        .getElementById(
+            "tituloModal"
+        )
+        .innerText =
+        "Nova Entrada";
 
-        id: Date.now(),
+        abrirModalLancamento();
 
-        tipo: tipoAtual,
+    }
+);
 
-        data:
+document
+.getElementById("btnSaida")
+.addEventListener(
+    "click",
+    () => {
+
+        tipoMovimentoAtual =
+            "saida";
+
+        document
+        .getElementById(
+            "tituloModal"
+        )
+        .innerText =
+        "Nova Saída";
+
+        abrirModalLancamento();
+
+    }
+);
+
+document
+.getElementById(
+    "btnNovaCategoria"
+)
+.addEventListener(
+    "click",
+    abrirModalCategoria
+);
+
+// =====================
+// NOVO LANÇAMENTO
+// =====================
+
+document
+.getElementById(
+    "formLancamento"
+)
+.addEventListener(
+    "submit",
+    function(e) {
+
+        e.preventDefault();
+
+        const novaMovimentacao = {
+
+            id: Date.now(),
+
+            tipo:
+            tipoMovimentoAtual,
+
+            data:
             document
-            .getElementById("data")
-            .value,
+            .getElementById(
+                "data"
+            ).value,
 
-        descricao:
+            descricao:
             document
-            .getElementById("descricao")
-            .value,
+            .getElementById(
+                "descricao"
+            ).value,
 
-        categoria:
+            categoria:
             document
-            .getElementById("categoria")
-            .value,
+            .getElementById(
+                "categoria"
+            ).value,
 
-        valor:
+            valor:
             Number(
                 document
-                .getElementById("valor")
-                .value
+                .getElementById(
+                    "valor"
+                ).value
             )
-    });
 
-    salvar();
+        };
 
-    atualizarTela();
+        dados.movimentacoes.push(
+            novaMovimentacao
+        );
 
-    fecharModal();
+        salvarDados();
 
-    this.reset();
-});
+        atualizarTela();
+
+        fecharModalLancamento();
+
+        this.reset();
+
+    }
+);
+
+// =====================
+// NOVA CATEGORIA
+// =====================
+
+document
+.getElementById(
+    "formCategoria"
+)
+.addEventListener(
+    "submit",
+    function(e){
+
+        e.preventDefault();
+
+        const tipo =
+        document
+        .getElementById(
+            "tipoCategoria"
+        )
+        .value;
+
+        const nome =
+        document
+        .getElementById(
+            "nomeCategoria"
+        )
+        .value
+        .trim();
+
+        if(!nome){
+
+            return;
+        }
+
+        if(
+            tipo === "entrada"
+        ){
+
+            dados
+            .categoriasEntrada
+            .push(nome);
+
+        }
+        else{
+
+            dados
+            .categoriasSaida
+            .push(nome);
+
+        }
+
+        salvarDados();
+
+        fecharModalCategoria();
+
+        this.reset();
+
+    }
+);
+
+// =====================
+// INICIALIZAÇÃO
+// =====================
+
+carregarDados();
+
+atualizarTela();
