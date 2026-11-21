@@ -5,8 +5,10 @@
 }
 
 body{
-    background:#f5f7fb;
     font-family:Arial,sans-serif;
+    background:#f2f5fa;
+    color:#222;
+    padding-bottom:120px;
 }
 
 .container{
@@ -16,174 +18,278 @@ body{
 }
 
 .saldo-card{
+
     background:white;
-    padding:20px;
-    border-radius:20px;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+    border-radius:24px;
+
+    padding:24px;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,.06);
 }
 
 .topo-card{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 }
 
-.topo-card button{
+.btn-icon{
+
     border:none;
+
     background:none;
-    cursor:pointer;
+
     font-size:20px;
+
+    cursor:pointer;
 }
 
 #saldo{
+
     margin-top:10px;
-    font-size:36px;
+
+    font-size:38px;
+
+    font-weight:700;
 }
 
 .resumo{
+
     display:flex;
-    gap:10px;
+
+    gap:12px;
+
     margin-top:20px;
 }
 
 .card-resumo{
+
     flex:1;
-    background:#f5f7fb;
-    padding:12px;
-    border-radius:12px;
+
+    background:#f7f9fc;
+
+    padding:15px;
+
+    border-radius:18px;
 }
 
 .card-resumo span{
+
     display:block;
-    margin-bottom:5px;
+
+    margin-bottom:8px;
+
+    color:#666;
+}
+
+.texto-verde{
+    color:#18a558;
+}
+
+.texto-vermelho{
+    color:#e63946;
 }
 
 .acoes{
+
     display:flex;
-    gap:10px;
+
+    gap:12px;
+
     margin-top:20px;
 }
 
 .acoes button{
+
     flex:1;
+
     border:none;
-    border-radius:12px;
+
     padding:15px;
+
+    border-radius:18px;
+
     color:white;
-    cursor:pointer;
+
+    font-size:15px;
+
     font-weight:bold;
+
+    cursor:pointer;
 }
 
 .entrada-btn{
-    background:#16a34a;
+    background:#1faa59;
 }
 
 .saida-btn{
-    background:#dc2626;
+    background:#e63946;
 }
 
 .filtros{
+
     margin-top:20px;
 }
 
 .filtros input,
 .filtros select{
+
     width:100%;
-    padding:12px;
+
     margin-bottom:10px;
-    border-radius:10px;
+
+    border-radius:14px;
+
     border:1px solid #ddd;
+
+    padding:14px;
 }
 
 .titulo{
+
     margin-top:20px;
+
     margin-bottom:15px;
 }
 
 .item{
+
     background:white;
-    padding:15px;
-    border-radius:15px;
+
+    border-radius:18px;
+
+    padding:16px;
+
     margin-bottom:10px;
-    box-shadow:0 3px 8px rgba(0,0,0,.08);
+
+    box-shadow:
+    0 4px 12px rgba(0,0,0,.05);
 }
 
 .item-data{
-    color:#666;
+
+    color:#777;
+
     font-size:12px;
 }
 
 .item-descricao{
-    margin-top:8px;
-    font-weight:bold;
+
+    margin-top:6px;
+
+    font-size:18px;
+
+    font-weight:600;
 }
 
 .item-categoria{
+
     margin-top:4px;
-    color:#777;
+
+    color:#666;
 }
 
 .valor-entrada{
-    color:#16a34a;
+
+    margin-top:10px;
+
+    color:#1faa59;
+
     font-weight:bold;
 }
 
 .valor-saida{
-    color:#dc2626;
+
+    margin-top:10px;
+
+    color:#e63946;
+
     font-weight:bold;
 }
 
-.modal{
+/* LIQUID GLASS */
+
+.bottom-nav{
+
     position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.4);
+
+    bottom:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:92%;
+
+    max-width:650px;
+
     display:flex;
-    justify-content:center;
+
+    justify-content:space-around;
+
     align-items:center;
+
+    padding:14px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.55);
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.7);
+
+    box-shadow:
+    0 8px 32px rgba(0,0,0,.10);
+
+    z-index:999;
 }
 
-.oculto{
-    display:none;
-}
+.nav-item{
 
-.modal-content{
-    width:90%;
-    max-width:400px;
-    background:white;
-    padding:20px;
-    border-radius:16px;
-}
-
-.modal-content form{
     display:flex;
+
     flex-direction:column;
-    gap:10px;
-    margin-top:15px;
-}
 
-.modal-content input,
-.modal-content select{
-    padding:12px;
-}
+    align-items:center;
 
-.botoes-modal{
-    display:flex;
-    gap:10px;
-}
+    gap:5px;
 
-.salvar,
-.cancelar{
-    flex:1;
     border:none;
-    padding:12px;
-    border-radius:10px;
+
+    background:none;
+
+    cursor:pointer;
+
+    color:#666;
+
+    transition:.3s;
+
+    padding:10px 16px;
+
+    border-radius:18px;
 }
 
-.salvar{
-    background:#2563eb;
-    color:white;
+.nav-item i{
+
+    font-size:22px;
 }
 
-.cancelar{
-    background:#ddd;
+.nav-item span{
+
+    font-size:12px;
+}
+
+.nav-item.ativo{
+
+    background:rgba(255,255,255,.65);
+
+    color:#2563eb;
 }
