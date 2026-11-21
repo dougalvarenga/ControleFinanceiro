@@ -1,0 +1,189 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f5f7fb;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+    padding:20px;
+}
+
+.saldo-card{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.topo-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.topo-card button{
+    border:none;
+    background:none;
+    cursor:pointer;
+    font-size:20px;
+}
+
+#saldo{
+    margin-top:10px;
+    font-size:36px;
+}
+
+.resumo{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.card-resumo{
+    flex:1;
+    background:#f5f7fb;
+    padding:12px;
+    border-radius:12px;
+}
+
+.card-resumo span{
+    display:block;
+    margin-bottom:5px;
+}
+
+.acoes{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.acoes button{
+    flex:1;
+    border:none;
+    border-radius:12px;
+    padding:15px;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.entrada-btn{
+    background:#16a34a;
+}
+
+.saida-btn{
+    background:#dc2626;
+}
+
+.filtros{
+    margin-top:20px;
+}
+
+.filtros input,
+.filtros select{
+    width:100%;
+    padding:12px;
+    margin-bottom:10px;
+    border-radius:10px;
+    border:1px solid #ddd;
+}
+
+.titulo{
+    margin-top:20px;
+    margin-bottom:15px;
+}
+
+.item{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+}
+
+.item-data{
+    color:#666;
+    font-size:12px;
+}
+
+.item-descricao{
+    margin-top:8px;
+    font-weight:bold;
+}
+
+.item-categoria{
+    margin-top:4px;
+    color:#777;
+}
+
+.valor-entrada{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.valor-saida{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.oculto{
+    display:none;
+}
+
+.modal-content{
+    width:90%;
+    max-width:400px;
+    background:white;
+    padding:20px;
+    border-radius:16px;
+}
+
+.modal-content form{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:15px;
+}
+
+.modal-content input,
+.modal-content select{
+    padding:12px;
+}
+
+.botoes-modal{
+    display:flex;
+    gap:10px;
+}
+
+.salvar,
+.cancelar{
+    flex:1;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+}
+
+.salvar{
+    background:#2563eb;
+    color:white;
+}
+
+.cancelar{
+    background:#ddd;
+}
