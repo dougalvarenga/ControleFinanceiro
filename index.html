@@ -15,45 +15,103 @@
 
 <body>
 
-    <div class="container">
+    <!-- ===================== -->
+    <!-- TELA INÍCIO -->
+    <!-- ===================== -->
 
-        <!-- CARD SALDO -->
+    <section id="inicio" class="pagina ativa">
 
-        <div class="saldo-card">
+        <div class="container">
 
-            <div class="topo-card">
+            <div class="saldo-card">
 
-                <h3>Saldo</h3>
+                <div class="topo-card">
 
-                <button class="btn-icon">
-                    <i class="bi bi-gear-fill"></i>
+                    <h3>Saldo</h3>
+
+                    <button
+                        class="btn-icon"
+                        id="btnAbrirAjustes">
+
+                        <i class="bi bi-gear-fill"></i>
+
+                    </button>
+
+                </div>
+
+                <h1 id="saldo">
+                    R$ 0,00
+                </h1>
+
+                <div class="resumo">
+
+                    <div class="card-resumo">
+
+                        <span>Entradas</span>
+
+                        <strong
+                            id="totalEntradas"
+                            class="texto-verde">
+
+                            R$ 0,00
+
+                        </strong>
+
+                    </div>
+
+                    <div class="card-resumo">
+
+                        <span>Saídas</span>
+
+                        <strong
+                            id="totalSaidas"
+                            class="texto-vermelho">
+
+                            R$ 0,00
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="acoes">
+
+                <button
+                    id="btnEntrada"
+                    class="entrada-btn">
+
+                    <i class="bi bi-plus-circle-fill"></i>
+
+                    Entrada
+
+                </button>
+
+                <button
+                    id="btnSaida"
+                    class="saida-btn">
+
+                    <i class="bi bi-dash-circle-fill"></i>
+
+                    Saída
+
                 </button>
 
             </div>
 
-            <h1 id="saldo">R$ 0,00</h1>
+            <div class="bloco">
 
-            <div class="resumo">
+                <div class="secao-titulo">
 
-                <div class="card-resumo">
-
-                    <span>Entradas</span>
-
-                    <strong id="totalEntradas"
-                        class="texto-verde">
-                        R$ 0,00
-                    </strong>
+                    <h2>
+                        Últimos Lançamentos
+                    </h2>
 
                 </div>
 
-                <div class="card-resumo">
-
-                    <span>Saídas</span>
-
-                    <strong id="totalSaidas"
-                        class="texto-vermelho">
-                        R$ 0,00
-                    </strong>
+                <div id="ultimosLancamentos">
 
                 </div>
 
@@ -61,73 +119,318 @@
 
         </div>
 
-        <!-- AÇÕES -->
+    </section>
 
-        <div class="acoes">
+    <!-- ===================== -->
+    <!-- TELA MOVIMENTAÇÕES -->
+    <!-- ===================== -->
 
-            <button id="btnEntrada" class="entrada-btn">
+    <section
+        id="movimentacoes"
+        class="pagina">
 
-                <i class="bi bi-plus-circle-fill"></i>
-                Entrada
+        <div class="container">
 
-            </button>
+            <h2 class="titulo-pagina">
 
-            <button id="btnSaida" class="saida-btn">
+                Movimentações
 
-                <i class="bi bi-dash-circle-fill"></i>
-                Saída
+            </h2>
 
-            </button>
+            <div class="filtros">
+
+                <input
+                    type="text"
+                    id="pesquisa"
+                    placeholder="Pesquisar..." />
+
+                <select id="filtroCategoria">
+
+                    <option value="">
+                        Todas as Categorias
+                    </option>
+
+                </select>
+
+                <select id="ordenacao">
+
+                    <option value="recentes">
+                        Mais recentes
+                    </option>
+
+                    <option value="antigos">
+                        Mais antigos
+                    </option>
+
+                    <option value="maior">
+                        Maior valor
+                    </option>
+
+                    <option value="menor">
+                        Menor valor
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div id="listaMovimentacoes">
+
+            </div>
 
         </div>
 
-        <!-- FILTROS -->
+    </section>
 
-        <div class="filtros">
+    <!-- ===================== -->
+    <!-- TELA CATEGORIAS -->
+    <!-- ===================== -->
 
-            <input
-                type="text"
-                placeholder="Pesquisar..."
-                id="pesquisa">
+    <section
+        id="categorias"
+        class="pagina">
 
-            <select id="categoriaFiltro">
+        <div class="container">
 
-                <option>
-                    Todas as Categorias
-                </option>
+            <div class="topo-categoria">
 
-            </select>
+                <h2>
+                    Categorias
+                </h2>
 
-            <select id="ordenacao">
+                <button
+                    id="btnNovaCategoria"
+                    class="btn-secundario">
 
-                <option value="recentes">
-                    Mais recentes
-                </option>
+                    Nova Categoria
 
-                <option value="antigos">
-                    Mais antigos
-                </option>
+                </button>
 
-            </select>
+            </div>
+
+            <div class="categoria-box">
+
+                <h3>
+                    Entradas
+                </h3>
+
+                <div id="categoriasEntrada">
+
+                </div>
+
+            </div>
+
+            <div class="categoria-box">
+
+                <h3>
+                    Saídas
+                </h3>
+
+                <div id="categoriasSaida">
+
+                </div>
+
+            </div>
 
         </div>
 
-        <!-- HISTÓRICO -->
+    </section>
 
-        <h2 class="titulo">
-            Histórico
-        </h2>
+    <!-- ===================== -->
+    <!-- TELA AJUSTES -->
+    <!-- ===================== -->
 
-        <div id="historico">
+    <section
+        id="ajustes"
+        class="pagina">
+
+        <div class="container">
+
+            <h2>
+                Ajustes
+            </h2>
+
+            <div class="ajustes-lista">
+
+                <button id="btnExportar">
+
+                    Exportar Dados
+
+                </button>
+
+                <button id="btnImportar">
+
+                    Importar Dados
+
+                </button>
+
+                <button
+                    id="btnLimparDados"
+                    class="btn-danger">
+
+                    Limpar Dados
+
+                </button>
+
+                <button>
+
+                    Sobre
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================== -->
+    <!-- MODAL LANÇAMENTO -->
+    <!-- ===================== -->
+
+    <div
+        id="modalLancamento"
+        class="modal oculto">
+
+        <div class="modal-content">
+
+            <h2 id="tituloModal">
+
+                Novo Lançamento
+
+            </h2>
+
+            <form id="formLancamento">
+
+                <input
+                    type="date"
+                    id="data"
+                    required>
+
+                <input
+                    type="text"
+                    id="descricao"
+                    placeholder="Descrição"
+                    required>
+
+                <select
+                    id="categoria"
+                    required>
+
+                </select>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    id="valor"
+                    placeholder="Valor"
+                    required>
+
+                <div class="modal-botoes">
+
+                    <button
+                        type="submit"
+                        class="btn-primary">
+
+                        Salvar
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="fecharModalLancamento()">
+
+                        Cancelar
+
+                    </button>
+
+                </div>
+
+            </form>
+
         </div>
 
     </div>
 
-    <!-- NAVEGAÇÃO -->
+    <!-- ===================== -->
+    <!-- MODAL CATEGORIA -->
+    <!-- ===================== -->
+
+    <div
+        id="modalCategoria"
+        class="modal oculto">
+
+        <div class="modal-content">
+
+            <h2>
+
+                Nova Categoria
+
+            </h2>
+
+            <form id="formCategoria">
+
+                <select
+                    id="tipoCategoria"
+                    required>
+
+                    <option value="entrada">
+
+                        Entrada
+
+                    </option>
+
+                    <option value="saida">
+
+                        Saída
+
+                    </option>
+
+                </select>
+
+                <input
+                    type="text"
+                    id="nomeCategoria"
+                    placeholder="Nome da categoria"
+                    required>
+
+                <div class="modal-botoes">
+
+                    <button
+                        type="submit"
+                        class="btn-primary">
+
+                        Salvar
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="fecharModalCategoria()">
+
+                        Cancelar
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ===================== -->
+    <!-- NAVBAR LIQUID GLASS -->
+    <!-- ===================== -->
 
     <nav class="bottom-nav">
 
-        <button class="nav-item ativo">
+        <button
+            class="nav-item ativo"
+            data-tela="inicio">
 
             <i class="bi bi-house-fill"></i>
 
@@ -135,7 +438,19 @@
 
         </button>
 
-        <button class="nav-item">
+        <button
+            class="nav-item"
+            data-tela="movimentacoes">
+
+            <i class="bi bi-arrow-left-right"></i>
+
+            <span>Movimentos</span>
+
+        </button>
+
+        <button
+            class="nav-item"
+            data-tela="categorias">
 
             <i class="bi bi-tags-fill"></i>
 
@@ -143,15 +458,9 @@
 
         </button>
 
-        <button class="nav-item">
-
-            <i class="bi bi-arrow-down-up"></i>
-
-            <span>Movimentos</span>
-
-        </button>
-
-        <button class="nav-item">
+        <button
+            class="nav-item"
+            data-tela="ajustes">
 
             <i class="bi bi-gear-fill"></i>
 
